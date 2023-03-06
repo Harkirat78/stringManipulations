@@ -263,8 +263,8 @@ void tail(char * aString, int whichWord, char * desiredSuffix) {
 
     //loop will iterate till end of string and examine each char 
     while (*p != '\0') {
-        //check if current char is a space
-        if (*p == ' ') {
+        //check if current char is a space or period
+        if (*p == ' ' || *p == '.') {
             wordCount++; //increment word 
             //if this is the target word that we are searching for, mark the start position
             if (wordCount == whichWord) {
@@ -274,7 +274,12 @@ void tail(char * aString, int whichWord, char * desiredSuffix) {
             else if (wordCount == whichWord + 1) {
                 //computer length of target word
                 int wordLen; //will calculate length of target word
-                wordLen = p - start; //subtract the two pointers to get length since p points to the end and start points to first character
+                if (*(p-1) == '.') { //if last character is a period, subtract 1 from word length
+                    wordLen = p - start - 1; //subtract the two pointers to get length since p points to the end and start points to first character
+                }
+                else {
+                    wordLen = p - start; //subtract the two pointers to get length since p points to the end and start points to first character
+                }
                 //iterate through each character in the target word
                 for (int i = 0; i < wordLen; i++) {
                     //putchar function is used to output each character of target word and is easier to use than mutliple printf
@@ -292,4 +297,3 @@ void tail(char * aString, int whichWord, char * desiredSuffix) {
         p++; //move pointer to next char in the string
     }
 }
-
