@@ -10,15 +10,13 @@ int main(int agrc, char * argv[]){
     printf("***** Function 1 *****\n");
     char * contents = readFile(argv[1]);         
     printf("Contents of %s:\n%s", argv[1], contents);
-    free(contents);
     printf("\n\n");
 
     /* function 2 */
     printf("***** Function 2 *****\n");
-    char str[] = "The red readymade dress was made for you! It was going to be ready tomorrow. What was the colour of the dress? Oh, it was red!";
     int numWords, numSentences;
     //call the dejaVu function to count the number of words and sentences
-    dejaVu(str, &numWords, &numSentences);
+    dejaVu(contents, &numWords, &numSentences);
     //print the results
     printf("Number of words = %d\n", numWords);
     printf("Number of sentences = %d\n", numSentences);
@@ -31,45 +29,25 @@ int main(int agrc, char * argv[]){
     printf("Enter a string: ");
     if (fgets(string, sizeof(string), stdin) == NULL) {
         printf("Error: Failed to read input string.\n");
-        return 1;
-    }
-    //remove the trailing newline character from the input string
-    int len = 0;
-    while (string[len] != '\0') {
-        len++;
-    }
-    if (len > 0 && string[len-1] == '\n') {
-        string[len-1] = '\0';
     }
     //call the goBig function to create the stretched string
     char * stretched = goBig(string);
     //print the stretched string
     printf("Stretched string: %s\n", stretched);
     //free the memory allocated for the stretched string
-    free(stretched);
     printf("\n");
-
+    
     /* function 4 */
     printf("***** Function 4 *****\n");
     char str4[] = "This is a sample string , with some punctuation! And new\nlines.";
-    int numWords4 = 0;
-    char ** words = goAway(str4, &numWords4);
+    int numWordsReturned = 0;
+    char ** words = goAway(str4, &numWordsReturned );
     if (words == NULL) {
         printf("Error: Failed to split string into words.\n");
-        return 1;
     }
-    printf("The string has %d words:\n", numWords4);
-    for (int i = 0; i < numWords4; i++) {
-        printf("%s ", words[i]);
-    }
+    printf("The string has %d words:\n", numWordsReturned);
     printf("\n");
-    //free memory
-    for (int i = 0; i < numWords4; i++) {
-        free(words[i]);
-    }
-    free(words);
-    printf("\n");
-
+    
     /* function 5 */
     printf("***** Function 5 *****\n");
     char input[] = "What was the colour of the dress? Oh, it was red!";
@@ -80,11 +58,10 @@ int main(int agrc, char * argv[]){
 
     /* function 6 */
     printf("***** Function 6 *****\n");
-    char *aString = "Now is the winter of our discontent Made glorious summer by this Sun of York.";
+    char * aString = "Now is the winter of our discontent Made glorious summer by this Sun of York.";
     int whichWord = 8;
-    char *desiredSuffix = "otter";
+    char * desiredSuffix = "otter";
     tail(aString, whichWord, desiredSuffix);
-
     printf("\n");
 
     return 0;

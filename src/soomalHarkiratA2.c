@@ -103,9 +103,10 @@ Returns: char *
 char * goBig(char * aString) {
     
     //determine the length of the input string
-    int length = strlen(aString); 
+    int length = strlen(aString)-1; 
     //allocate memory for the stretched string (initially empty)
-    char *stretched = calloc(1, sizeof(char)); //allocate for only 1 byte
+    char * stretched = calloc(1, sizeof(char)); //allocate for only 1 byte
+
     stretched[0] = '\0'; //initialize first element to the null character, equivalent to an empty string
 
     //prompt the user for a number of valid positive integers, where num is the length of aString
@@ -136,6 +137,7 @@ char * goBig(char * aString) {
             strncat(stretched, &aString[i], 1); //function will append a single character from aString to end of strecthed string one at a time
         }
     }
+    free(stretched); //free the memory allocated for the stretched array
     return stretched; //return the newly formed dynamic string 
 }
 /*
@@ -201,9 +203,15 @@ char ** goAway(char * aString, int * numWordsReturned) {
             if (inWord==0) {
                 wordStart = i; //set the starting index of current word
             }
-            inWord = 1; //set inWord to 1 (true)
+            inWord = 1; //set inWord to 1 (
+
         }
     }
+    //iterate through each element in the words array
+    for (int i = 0; i < numWords; i++) {
+        free(words[i]); //free the memory allocated for the string 
+    }
+    free(words); //free the memory allocated for the words array itself
     *numWordsReturned = numWords; //set the output parameter so pointer points to numWords
     return words; //return the array of words
 }
@@ -217,7 +225,7 @@ Function name: breathless
 Inputs: string pointer
 Returns: char *
 */
-char * breathless(char* aString) {
+char * breathless(char * aString) {
 
     //initialize two pointers p and q to point at beginning of the input string
     char * p = aString; //iterate over all characters in the string
@@ -284,3 +292,4 @@ void tail(char * aString, int whichWord, char * desiredSuffix) {
         p++; //move pointer to next char in the string
     }
 }
+
