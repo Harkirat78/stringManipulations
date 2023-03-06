@@ -103,7 +103,7 @@ Returns: char *
 char * goBig(char * aString) {
     
     //determine the length of the input string
-    int length = strlen(aString)-1; 
+    int length = strlen(aString)-1; //subtract 1 for the NULL character
     //allocate memory for the stretched string (initially empty)
     char * stretched = calloc(1, sizeof(char)); //allocate for only 1 byte
 
@@ -137,7 +137,6 @@ char * goBig(char * aString) {
             strncat(stretched, &aString[i], 1); //function will append a single character from aString to end of strecthed string one at a time
         }
     }
-    free(stretched); //free the memory allocated for the stretched array
     return stretched; //return the newly formed dynamic string 
 }
 /*
