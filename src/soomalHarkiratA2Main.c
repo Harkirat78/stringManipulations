@@ -59,7 +59,7 @@ int main(int agrc, char * argv[]){
     /* function 6 */
     printf("***** Function 6 *****\n");
     char * aString = "Now is the winter of our discontent Made glorious summer by this Sun of York.";
-    int whichWord = 8;
+    int whichWord = 15;
     char * desiredSuffix = "otter";
     tail(aString, whichWord, desiredSuffix);
     printf("\n");
