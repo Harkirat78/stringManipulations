@@ -41,12 +41,15 @@ int main(int agrc, char * argv[]){
     printf("***** Function 4 *****\n");
     char str4[] = "This is a sample string , with some punctuation! And new\nlines.";
     int numWordsReturned = 0;
-    char ** words = goAway(str4, &numWordsReturned );
+    char ** words = goAway(str4, &numWordsReturned);
     if (words == NULL) {
         printf("Error: Failed to split string into words.\n");
     }
     printf("The string has %d words:\n", numWordsReturned);
-    printf("\n");
+    for (int i = 0; i < numWordsReturned; i++) {
+        printf("%s ", words[i]);
+    }   
+    printf("\n\n");
     
     /* function 5 */
     printf("***** Function 5 *****\n");
