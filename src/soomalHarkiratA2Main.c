@@ -39,7 +39,7 @@ int main(int agrc, char * argv[]){
     
     /* function 4 */
     printf("***** Function 4 *****\n");
-    char str4[] = "This is a sample string , with some punctuation! And new\nlines.";
+    char str4[] = "Oh , it was red!.";
     int numWordsReturned = 0;
     char ** words = goAway(str4, &numWordsReturned);
     if (words == NULL) {
@@ -55,8 +55,8 @@ int main(int agrc, char * argv[]){
     printf("***** Function 5 *****\n");
     char input[] = "What was the colour of the dress? Oh, it was red!";
     printf("Before: %s\n", input);
-    breathless(input);
-    printf("After: %s\n", input);
+    char * new = breathless(input);
+    printf("After: %s\n", new);
     printf("\n");
 
     /* function 6 */
